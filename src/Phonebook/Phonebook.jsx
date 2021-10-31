@@ -14,9 +14,9 @@ export default function Phonebook() {
   const errorState = useSelector(getError);
   const isLoading = useSelector(getIsLoading);
 
-  useEffect(() => {
-    errorState && alert(errorState);
-  });
+  // useEffect(() => {
+  //   errorState && alert(errorState);
+  // });
 
   useEffect(() => {
     dispatch(fetchContacts());
