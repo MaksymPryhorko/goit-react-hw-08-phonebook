@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import style from "Phonebook/Filter/Filter.module.css";
-import contactsActions from "redux/contacts-actions";
-import { getFilter } from "redux/contacts-selectors";
+import style from "./Filter.module.css";
+import contactsActions from "redux/contacts/contacts-actions";
+import { getFilter } from "redux/contacts/contacts-selectors";
 
 export default function Filter() {
   const dispatch = useDispatch();

@@ -6,18 +6,24 @@ import Container from "components/Container";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import { authOperations, authSelectors } from "redux/auth";
+import { Notify } from "notiflix";
 
 const HomeView = lazy(() => import("views/HomeView"));
 const RegisterView = lazy(() => import("views/RegisterView"));
 const LoginView = lazy(() => import("views/LoginView"));
-const Phonebook = lazy(() => import("Phonebook"));
+const ContactsView = lazy(() => import("views/ContactsView"));
 
 export default function App() {
   const dispatch = useDispatch();
+  const error = useSelector(authSelectors.getError);
 
-  // const isRefreshing = useSelector(authSelectors.getIsFetchingCurrentUser);
+  const isRefreshing = useSelector(authSelectors.getIsFetchingCurrentUser);
 
-  // console.log(isRefreshing);
+  useEffect(() => {
+    if (error) {
+      Notify.failure(`Error: ${error}`);
+    }
+  }, [error]);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser(), [dispatch]);
@@ -37,9 +43,8 @@ export default function App() {
           <PublicRoute exact path="/login" restricted redirectTo="/contacts">
             <LoginView />
           </PublicRoute>
-          {/* <Route path="/contacts" component={ContactsView} /> */}
           <PrivateRoute path="/contacts" redirectTo="/login">
-            <Phonebook />
+            <ContactsView />
           </PrivateRoute>
         </Suspense>
       </Switch>

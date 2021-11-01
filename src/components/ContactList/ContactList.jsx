@@ -1,10 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import React from "react";
 
-import contactsActions from "redux/contacts-actions";
-import style from "Phonebook/ContactList/ContactList.module.css";
-import { getVisibleContacts } from "redux/contacts-selectors";
-import { deleteContact } from "redux/contacts-operations";
+import contactsActions from "redux/contacts/contacts-actions";
+import style from "./ContactList.module.css";
+import { getVisibleContacts } from "redux/contacts/contacts-selectors";
+import { deleteContact } from "redux/contacts/contacts-operations";
 
 export default function ContactList() {
   const dispatch = useDispatch();

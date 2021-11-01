@@ -3,12 +3,12 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 
-import contactsActions from "redux/contacts-actions";
+import contactsActions from "redux/contacts/contacts-actions";
 import {
   fetchContacts,
   addContact,
   deleteContact,
-} from "redux/contacts-operations";
+} from "redux/contacts/contacts-operations";
 
 const items = createReducer([], {
   [fetchContacts.fulfilled]: (_, { payload }) => payload,

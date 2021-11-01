@@ -1,21 +1,28 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { Notify } from "notiflix";
 
-import Form from "./Form";
-import ContactList from "./ContactList";
-import Filter from "./Filter";
-import style from "./Phonebook.module.css";
-import { getError, getIsLoading } from "../redux/contacts-selectors";
-import { fetchContacts } from "redux/contacts-operations";
+import Form from "components/Form";
+import ContactList from "components/ContactList";
+import Filter from "components/Filter";
+import style from "./ContactsView.module.css";
+import { getError, getIsLoading } from "redux/contacts/contacts-selectors";
+import { fetchContacts } from "redux/contacts/contacts-operations";
 import Loading from "react-loader-spinner";
 
-export default function Phonebook() {
+export default function ContactsView() {
   const dispatch = useDispatch();
-  const errorState = useSelector(getError);
+  const error = useSelector(getError);
   const isLoading = useSelector(getIsLoading);
 
+  useEffect(() => {
+    if (error) {
+      Notify.failure(`Error: ${error}`);
+    }
+  }, [error]);
+
   // useEffect(() => {
-  //   errorState && alert(errorState);
+  //   error && alert(errorState);
   // });
 
   useEffect(() => {

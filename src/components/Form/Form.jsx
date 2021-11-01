@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import style from "Phonebook/Form/Form.module.css";
-import { getItems } from "redux/contacts-selectors";
-import { addContact } from "redux/contacts-operations";
+import style from "./Form.module.css";
+import { getItems } from "redux/contacts/contacts-selectors";
+import { addContact } from "redux/contacts/contacts-operations";
 
 export default function Form() {
   const [name, setName] = useState("");
