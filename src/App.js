@@ -1,6 +1,6 @@
 import { useEffect, Suspense, lazy } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import AppBar from "components/AppBar";
 import Container from "components/Container";
 import PrivateRoute from "./components/PrivateRoute";
@@ -15,9 +15,9 @@ const Phonebook = lazy(() => import("Phonebook"));
 export default function App() {
   const dispatch = useDispatch();
 
-  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+  // const isRefreshing = useSelector(authSelectors.getIsFetchingCurrentUser);
 
-  // console.log(isFetchingCurrentUser);
+  // console.log(isRefreshing);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser(), [dispatch]);
