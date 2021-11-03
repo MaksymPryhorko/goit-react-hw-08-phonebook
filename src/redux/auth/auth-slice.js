@@ -47,7 +47,7 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
     [authOperations.fetchCurrentUser.pending](state) {
-      // state.isFetchingCurrentUser = true;
+      state.isFetchingCurrentUser = true;
       state.error = null;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
@@ -57,7 +57,7 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.rejected](state, action) {
       state.isFetchingCurrentUser = false;
-      // state.error = action.payload;
+      state.error = action.payload;
     },
   },
 });

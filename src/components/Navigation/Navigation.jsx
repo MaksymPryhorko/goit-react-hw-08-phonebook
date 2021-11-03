@@ -5,7 +5,6 @@ import s from "./Navigation.module.css";
 
 const Navigation = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  console.log(isLoggedIn);
 
   return (
     <nav>

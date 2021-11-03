@@ -17,7 +17,9 @@ export default function App() {
   const dispatch = useDispatch();
   const error = useSelector(authSelectors.getError);
 
-  const isRefreshing = useSelector(authSelectors.getIsFetchingCurrentUser);
+  const isFetchCurrentUser = useSelector(
+    authSelectors.getIsFetchingCurrentUser
+  );
 
   useEffect(() => {
     if (error) {
@@ -26,28 +28,35 @@ export default function App() {
   }, [error]);
 
   useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser(), [dispatch]);
-  });
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
-    <Container>
-      <AppBar />
-      <Switch>
-        <Suspense fallback={<p>Загружаем...</p>}>
-          <PublicRoute exact path="/">
-            <HomeView />
-          </PublicRoute>
-          <PublicRoute exact path="/register" restricted redirectTo="/contacts">
-            <RegisterView />
-          </PublicRoute>
-          <PublicRoute exact path="/login" restricted redirectTo="/contacts">
-            <LoginView />
-          </PublicRoute>
-          <PrivateRoute path="/contacts" redirectTo="/login">
-            <ContactsView />
-          </PrivateRoute>
-        </Suspense>
-      </Switch>
-    </Container>
+    !isFetchCurrentUser && (
+      <Container>
+        <AppBar />
+        <Switch>
+          <Suspense fallback={<p>Загружаем...</p>}>
+            <PublicRoute exact path="/">
+              <HomeView />
+            </PublicRoute>
+            <PublicRoute
+              exact
+              path="/register"
+              restricted
+              redirectTo="/contacts"
+            >
+              <RegisterView />
+            </PublicRoute>
+            <PublicRoute exact path="/login" restricted redirectTo="/contacts">
+              <LoginView />
+            </PublicRoute>
+            <PrivateRoute path="/contacts" redirectTo="/login">
+              <ContactsView />
+            </PrivateRoute>
+          </Suspense>
+        </Switch>
+      </Container>
+    )
   );
 }
